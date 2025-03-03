@@ -1,0 +1,81 @@
+@if (excursion) {
+    <div
+        class="sm:absolute sm:inset-0 flex flex-col flex-auto min-w-0 sm:overflow-hidden bg-card dark:bg-transparent"
+    >
+        <form class="w-full" #myForm="ngForm" ngForm="ngForm">
+            <!-- Header -->
+            <div class="flex flex-row md:gap-4 items-center px-4 h-fit md:h-14  border-b bg-gray-900">
+                <div class=" flex gap-2 w-1/4 text-4xl font-extrabold text-white ">
+                    <span>{{ 'Details' | transloco }}</span>
+                    <span class="hidden sm:flex">{{ 'Excursion' | transloco }}</span>
+                </div>
+                <div class="flex w-3/4 items-center justify-end">
+                    <!-- clear project button -->
+                    <button
+                        class="mr-2 text-red-500 hover:bg-red-500 hover:text-gray-900 transition-all duration-400"
+                        mat-stroked-button
+                        type="button"
+                        (click)="deleteOne()"
+                    >
+                        <span class="ml-2 mr-1">{{ 'Delete' | transloco }}</span>
+                    </button>
+                    <!-- save project button -->
+                    <button
+                        class="mr-2 text-blue-500 hover:bg-blue-500 hover:text-gray-900 transition-all duration-400"
+                        mat-stroked-button
+                        type="submit"
+                        (click)="updateOne()"
+                    >
+                        <span class="ml-2 mr-1">{{ 'Update' | transloco }}</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Main -->
+            <div class="flex flex-col flex-auto h-[calc(100vh-8rem)] bg-gray-100  overflow-y-auto">
+                <div class="flex flex-col mb-6 w-full">
+                    <div class="grid sm:grid-cols-9 gap-6 p-3">
+                        <!-- departure -->
+                        <div class="sm:col-span-3">
+                            <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                <mat-label class="capitalize">{{ 'departure' | transloco }}</mat-label>
+                                <input [(ngModel)]="excursion.departure" matInput name="departure" type="text" readonly />
+                            </mat-form-field>
+                            @if ( myForm.controls['departure'] && (myForm.controls['departure'].dirty || myForm.submitted) &&
+                            myForm.controls['departure'].hasError('required') ) {
+                                <mat-error>
+                                    {{ 'This field is required' | transloco }}
+                                </mat-error>
+                            }
+                        </div>
+                        <!-- destination -->
+                        <div class="sm:col-span-3">
+                            <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                <mat-label class="capitalize">{{ 'destination' | transloco }}</mat-label>
+                                <input [(ngModel)]="excursion.destination" matInput name="destination" type="text" readonly />
+                            </mat-form-field>
+                            @if ( myForm.controls['destination'] && (myForm.controls['destination'].dirty || myForm.submitted)
+                            && myForm.controls['destination'].hasError('required') ) {
+                                <mat-error>
+                                    {{ 'This field is required' | transloco }}
+                                </mat-error>
+                            }
+                        </div>
+                        <!-- key -->
+                        <div class="sm:col-span-3">
+                            <mat-form-field class="fuse-mat-no-subscript fuse-mat-emphasized-affix w-full">
+                                <mat-label class="capitalize">{{ 'key' | transloco }}</mat-label>
+                                <input [(ngModel)]="excursion.key" matInput name="key" type="text" readonly />
+                            </mat-form-field>
+                            @if ( myForm.controls['key'] && (myForm.controls['key'].dirty || myForm.submitted) &&
+                            myForm.controls['key'].hasError('required') ) {
+                                <mat-error>
+                                    {{ 'This field is required' | transloco }}
+                                </mat-error>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
